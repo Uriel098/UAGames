@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use Illuminate\Http\Request;
 
-class gamescontroller extends Controller
+class Gamecontroller extends Controller
 {
     public function list(){
         $games = Game::all();
@@ -22,8 +22,8 @@ class gamescontroller extends Controller
                 "name"=> $game->name,
                 "vote"=> $game->vote,
                 "price"=> $game->price,
-                "created"=> $game->created_ad,
-                "updated"=> $game->create_ad,
+                "created_at"=> $game->created_at,
+                "updated_at"=> $game->updated_at,
             ];
             array_push($list, $object);
         }
@@ -41,46 +41,53 @@ class gamescontroller extends Controller
             "name"=> $game->name,
             "vote"=> $game->vote,
             "price"=> $game->price,
-            "created"=> $game->created_ad,
-            "updated"=> $game->create_ad,
+            "created_at"=> $game->created_at,
+            "updated_at"=> $game->updated_at,
         ];
         return response()->json($object);
     }
     public function create(Request $request){
       $data = $request->validate([
+        'image' => 'required|min:3',
         'name' => 'required|min:3',
         'review' => 'required|min:3',
         'synopsis' => 'required|min:3',
-        'vote' => 'required|min:3',
-        'price' => 'required|min:3',
+        'vote' => 'required|min:1',
+        'price' => 'required|min:1',
+
       ]);
       $game = Game::create([
         'name' => $data['name'],
+        'image' => $data['image'],
         'review' => $data['review'],
         'synopsis' => $data['synopsis'],
         'vote' => $data['vote'],
         'price' => $data['price'],
+
       ]);
         if($game){
             $object=[
                 "response" => "success. Item saved correctly",
+                "data" => $game
             ];
             return response()->json($object);
         }else{
             $object=[
                 "response" => "Error: Something went wrong, please try again.",
+                "data" => $game
             ];
             return response()->json($object);
         }
         }
         public function update(Request $request){
             $data = $request->validate([
-                'id' => 'required|min1',
+                'id' => 'required|min:1',
                 'name' => 'required|min:3',
                 'review' => 'required|min:3',
                 'synopsis' => 'required|min:3',
                 'vote' => 'required|min:3',
                 'price' => 'required|min:3',
+                'image' => 'required|min:3',
             ]);
             $game = Game::where('id','=',$data['id'])->first();
             $game->name = $data['name'];
@@ -88,6 +95,7 @@ class gamescontroller extends Controller
             $game->synopsis = $data['synopsis'];
             $game->vote = $data['vote'];
             $game->price = $data['price'];
+            $game->image = $data['image'];
             if ($game->save()){
                 $object=[
                     "response" => "success. Item saved correctly",
@@ -100,6 +108,11 @@ class gamescontroller extends Controller
                 ];
                 return response()->json($object);
             }
+            
         }
-
+        public function delete($id){
+            $game = Game::findOrFail($id);
+            $game->delete();
+            return response()->json(['response'=>'game deleted']);
+        }
 }

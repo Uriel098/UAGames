@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
-class commentsController extends Controller
+class CommentController extends Controller
 {
     public function list(){
         $comments = comment::all();

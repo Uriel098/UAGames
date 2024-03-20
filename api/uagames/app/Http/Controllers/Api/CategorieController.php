@@ -6,7 +6,7 @@ use App\Models\Categorie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class categoriescontroller extends Controller
+class Categoriecontroller extends Controller
 {
     public function list(){
         $categories = categorie::all();

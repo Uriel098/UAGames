@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Console;
 
-class consolesController extends Controller
+class ConsoleController extends Controller
 {
     public function list(){
         $consoles = Console::all();
@@ -75,5 +75,10 @@ class consolesController extends Controller
             ];
             return response()->json($object);
         }
+    }
+    public function delete($id){
+        $console = Console::findOrFail($id);
+        $console->delete();
+        return response()->json(['response'=>'console deleted']);
     }
 }

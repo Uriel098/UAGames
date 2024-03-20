@@ -5,7 +5,7 @@ use App\Models\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class storesController extends Controller
+class StoreController extends Controller
 {
     public function list(){
         $stores = Store::all();

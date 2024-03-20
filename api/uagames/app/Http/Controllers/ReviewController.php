@@ -6,5 +6,11 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    //
+    use HasFactory;
+
+    public function index()
+    {
+        return view('reviews.reviews');
+        
+    }
 }

@@ -6,7 +6,7 @@ use App\Models\Calification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class calificationscontroller extends Controller
+class Calificationcontroller extends Controller
 {
     public function list(){
         $califications = calification::all();

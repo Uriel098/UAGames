@@ -5,7 +5,7 @@ use App\Models\Review;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class reviewsController extends Controller
+class ReviewController extends Controller
 {
     public function list(){
         $reviews = Review::all();

@@ -11,5 +11,6 @@ class Publisher extends Model
     protected $fillable = [
         'name',
         'location',
+        'image'
     ];
 }
