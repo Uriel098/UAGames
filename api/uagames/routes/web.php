@@ -1,16 +1,16 @@
 <?php
 
-use App\http\Controllers\HomeController;
-use App\http\Controllers\AdminController;
-use App\http\Controllers\GameController;
-use App\http\Controllers\ConsoleController;
-use App\http\Controllers\ReviewController;
-use App\http\Controllers\StoreController;
-use App\http\Controllers\CommentController;
-use App\http\Controllers\PublisherController;
-use App\http\Controllers\CategorieController;
-use App\http\Controllers\CalificationController;
-use App\http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\ConsoleController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CalificationController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/old', function () {

@@ -17,7 +17,7 @@ class StoreController extends Controller
                 "id"=> $store->id,
                 "name"=> $store->name,
                 "location"=> $store->location,
-                "available"=> $store->available,
+                "score"=> $store->score,
             ];
             array_push($list, $object);
         }
@@ -44,12 +44,12 @@ class StoreController extends Controller
         $store = request->validate([
             "name"=> "required|min:3",
             "location"=> "required|min:3",
-            "available"=> "required|min:3",
+            "score"=> "required|min:3",
         ]);
         $store = Store::create([
             "name"=> $data["name"],
             "location"=> $data["location"],
-            "available"=> $data["available"],
+            "score"=> $data["score"],
         ]);
         if($store){
             $object=[
@@ -69,12 +69,12 @@ class StoreController extends Controller
         $data = $request->validate([
             "name"=> "required|min:3",
             "location"=> "required|min:3",
-            "available"=> "required|min:3",
+            "score"=> "required|min:3",
         ]);
         $store = Store::where('id','=',$id)->first();
         $store->name = $data["name"];
         $store->location = $data["location"];
-        $store->available = $data["available"];
+        $store->score = $data["score"];
 
         if($store->update()){
             $object=[

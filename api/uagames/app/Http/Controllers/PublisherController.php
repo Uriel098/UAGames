@@ -14,4 +14,5 @@ class PublisherController extends Controller
         return view('publishers.publishers');
         
     }
+    
 }
