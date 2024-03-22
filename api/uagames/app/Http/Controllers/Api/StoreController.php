@@ -28,23 +28,20 @@ class StoreController extends Controller
         $store = Store::where('id','=',$id)->first();
 
         $object = [    
-            "id"=> $store->id,
-            "review"=> $store->review,
-            "image"=> $store->image,
-            "synopsis"=> $store->synopsis,
+            "id"=> $store->id,            
             "name"=> $store->name,
-            "vote"=> $store->vote,
-            "price"=> $store->price,
-            "created"=> $store->created_ad,
-            "updated"=> $store->create_ad,
+            "location"=> $store->location,
+            "score"=> $store->score,
+            "created_at"=> $store->created_at,
+            "updated_at"=> $store->update_at,
         ];
         return response()->json($object);
     }
     public function create(Request $request){
-        $store = request->validate([
-            "name"=> "required|min:3",
-            "location"=> "required|min:3",
-            "score"=> "required|min:3",
+        $data = $request->validate([
+            'name' => 'required|min:3',
+            'location' => 'required|min:3',
+            'score' => 'required|min:1',
         ]);
         $store = Store::create([
             "name"=> $data["name"],
